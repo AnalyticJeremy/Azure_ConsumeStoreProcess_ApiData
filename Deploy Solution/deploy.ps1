@@ -23,11 +23,16 @@ param(
  [string]
  $resourceGroupName,
 
+ [Parameter(Mandatory=$True, HelpMessage="Value will be used to name azure resources. Use only lowercase letters.")]
+ [string]
+ $name_prefix,
+
  [string]
  $subscriptionId,
 
  [string]
  $resourceGroupLocation,
+
 
  [string]
  $templateFilePath = "template.json"
@@ -104,7 +109,7 @@ else {
 
 # Create a template parameter object
 $templateParameters = @{
-	name_prefix = $resourceGroupName
+	name_prefix = $name_prefix
 	location = $resourceGroupLocation
 };
 
