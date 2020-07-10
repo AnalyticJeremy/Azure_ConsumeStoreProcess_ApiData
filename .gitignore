@@ -8,6 +8,9 @@
 /.vs
 
 /WebUI/node_modules
+/WebUI/WebUI.njsproj.user
+/WebUI/bin/
+/WebUI/obj/
 
 *.gitignore
 

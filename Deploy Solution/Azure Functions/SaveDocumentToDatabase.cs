@@ -107,8 +107,8 @@ public class Document
 {
     public Document()
     {
-        this.predicted_category = "";
-        this.predicted_interest_score = 0;
+        this.predicted_category = new object();
+        this.predicted_interest_score = new object();
         this.actual_category = "Other";
         this.actual_interest_score = -1;
 
@@ -140,8 +140,8 @@ public class Document
     public string raw_text { get; set; }
     public string[] key_phrases { get; set; }
 
-    public string predicted_category { get; set; }
-    public decimal predicted_interest_score { get; set; }
+    public object predicted_category { get; set; }
+    public object predicted_interest_score { get; set; }
 
     public string actual_category { get; set; }
     public int actual_interest_score { get; set; }

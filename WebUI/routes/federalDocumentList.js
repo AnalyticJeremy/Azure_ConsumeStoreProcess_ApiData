@@ -36,7 +36,7 @@ FederalDocumentList.prototype = {
                 },
                 "documents": function (callback) {
                     var documentQuerySpec = {
-                        query: 'SELECT r.id, r.title, r.type, r.abstract_text, r.pdf_url, r.publication_date, r.agency_ids, r.key_phrases, r.predicted_category, r.predicted_interest_score, r.actual_category, r.actual_rating FROM root r  WHERE r.publication_date = @pub_date',
+                        query: 'SELECT r.id, r.title, r.type, r.abstract_text, r.pdf_url, r.predicted_category["Scored Labels"] AS predicted_category, r.publication_date, r.agency_ids, r.key_phrases, r.predicted_interest_score, r.actual_category, r.actual_rating, r.date_categorized FROM root r WHERE r.publication_date = @pub_date',
                         parameters: [{
                             name: '@pub_date',
                             value: filterDate
@@ -80,6 +80,10 @@ FederalDocumentList.prototype = {
                     var document = documents[i];
                     var categoryName = document.actual_category;
                     var category = null;
+
+                    if (document.date_categorized == null) {
+                        categoryName = document.predicted_category;
+                    }
 
                     var categoryIndex = groupedDocuments.categoryNames.indexOf(categoryName);
                     if (categoryIndex >= 0) {
